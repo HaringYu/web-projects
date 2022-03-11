@@ -49,9 +49,10 @@ footer{
 
   }
 
-.intro{
+.intro img{
     display: flex;
     align-content: center;
     justify-content: center;
     background-color: silver;
+    padding: 1em;
   }
