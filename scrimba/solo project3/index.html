@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Invoice creator</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Invoice creator</h1>
+            <p>Thanks for choosing GoodCorp, LLC!</p>
+        </header>
+
+        <main class="main">
+            <section class="services">
+                <button 
+                    class="service" 
+                    data-type="Wash Car" 
+                    data-price="10">
+                    Wash Car: $10
+                </button>
+                <button 
+                    class="service" 
+                    data-type="Mow Lawn" 
+                    data-price="20">
+                    Mow Lawn: $20
+                </button>
+                <button 
+                    class="service" 
+                    data-type="Pull Weeds" 
+                    data-price="30">
+                    Pull Weeds: $30
+                </button>
+            </section>
+
+            <section class="invoice">
+                <div class="invoice-header">
+                    <h2 class="task">TASK</h2>
+                    <h2 class="total">TOTAL</h2>
+                </div>
+
+                <div class="invoice-items"></div>
+
+                <div class="invoice-footer">
+                    <div class="notes">
+                        <h2>NOTES</h2>
+                        <p>We accept cash, credit card, or PayPal</p>
+                    </div>
+                    <div class="total-amount">
+                        <h2>TOTAL AMOUNT</h2>
+                        <p id="display-total">$0</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <button class="button-send" id="send-invoice">
+                    <img class="email-icon" src="Mail.png">Send invoice
+                </button>
+            </section>
+        </main>
+
+        <script src="index.js"></script>
+    </body>
+</html>
