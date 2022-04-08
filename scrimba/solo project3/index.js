@@ -1,28 +1,28 @@
-const services = document.querySelectorAll(".service")
-const list = document.querySelector(".invoice-items")
-const displayTotal = document.getElementById("display-total")
-const sendInvoice = document.getElementById("send-invoice")
+const services = document.querySelectorAll(".service") //用class定位三个button获取三种服务
+const list = document.querySelector(".invoice-items") //定义一个list 用class定位并放置用于显示用户选的service
+const displayTotal = document.getElementById("display-total")//显示的总金额
+const sendInvoice = document.getElementById("send-invoice")//最后的提交/清零button
 
-let invoiceItems = [];
+let invoiceItems = []; //定义一个数列存储所有的服务item和price
 
-function charge(event) {
-    const type = event.target.getAttribute("'data-type")
-    const price = event.target.getAttribute("data-price")
-    const alreadyCharged = invoiceItems.some((invoiceItem) => {
-        return type === invoiceItem.type
+function charge(event) { //主函数 提交项目进InvoiceItems[]
+    const type = event.target.getAttribute("'data-type") //event.target.getAttribute() 定义服务的项目类型
+    const price = event.target.getAttribute("data-price") //定义服务的项目费用
+    const alreadyCharged = invoiceItems.some((invoiceItem) => { //检查InvoiceItems[]里是否已经有某个InvoiceItem，返回一个布尔值true
+        return type === invoiceItem.type  //返回type和某个InvoiceItem的服务项目类型严格相等
     })
 
-    if (alreadyCharged) {
-        return false
+    if (alreadyCharged) { //条件：若已经存在为true
+        return false //返回false
     }
 
-    invoiceItems.push({ type, price })
-    showList()
-    showTotalAmount()
-    updateDisabled()
+    invoiceItems.push({ type, price }) //主函数 push button带来的参数{type，price}进InvoiceItems[]
+    showList() //主函数 显示用户选择的service和price
+    showTotalAmount() //主函数 显示price之和
+    updateDisabled() //？？？这个是啥！
 }
 
-function showList() {
+function showList() { //封装 
     let listHTML = ""
 
     invoiceItems.forEach((invoiceItem, index) => {
@@ -39,7 +39,7 @@ function showList() {
     list.innerHTML = listHTML
 }
 
-function showTotalAmount() {
+function showTotalAmount() { //封装
     let totalAmount = 0
 
     invoiceItems.forEach((invoiceItem) => {
@@ -49,7 +49,7 @@ function showTotalAmount() {
     displayTotal.innerHTML = `$${totalAmount}`
 }
 
-function updateDisabled() {  
+function updateDisabled() {  //虽然看不懂这个但是封装
     [...services].forEach((service) => {
         const alreadyCharged = invoiceItems.some((invoiceItem) => {
             return service.getAttribute("data-type") === invoiceItem.type
@@ -58,7 +58,7 @@ function updateDisabled() {
     })
 }
 
-[...services].forEach((service) => {
+[...services].forEach((service) => { 
     service.addEventListener("click", charge)
 })
 
@@ -69,7 +69,7 @@ sendInvoice.addEventListener("click",() => {
     updateDisabled()
 })
 
-list.addEventListener("click", (event) => {
+list.addEventListener("click", (event) => { 
     const index = event.target.getAttribute("data-type")
 
     if (index === null) {
